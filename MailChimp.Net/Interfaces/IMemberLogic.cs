@@ -166,6 +166,26 @@ namespace MailChimp.Net.Interfaces
 		/// <exception cref="ArgumentOutOfRangeException">Enlarging the value of this instance would exceed <see cref="P:System.Text.StringBuilder.MaxCapacity" />. </exception>
 		Task<MemberResponse> GetResponseAsync(string listId, MemberRequest memberRequest = null);
 
-		string Hash(string emailAddress);
+        /// <summary>
+        /// Gets the custom events for a particular list member async
+        /// </summary>
+        /// <param name="listId">The list identifier.</param>
+        /// <param name="emailAddressOrHash">The email address or hash.</param>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        Task<IEnumerable<MemberEvent>> GetCustomEventsAsync(string listId, string emailAddressOrHash, QueryableBaseRequest request = null);
+
+        /// <summary>
+        /// Adds a custom evet for a list member asynchronous.
+        /// </summary>
+        /// <param name="listId">The list identifier.</param>
+        /// <param name="emailAddressOrHash">The email address or hash.</param>
+        /// <param name="memberEvent">The event to record.</param>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
+        Task AddCustomEventsAsync(string listId, string emailAddressOrHash, MemberEventDTO memberEvent, BaseRequest request = null);
+
+
+        string Hash(string emailAddress);
 	}
 }

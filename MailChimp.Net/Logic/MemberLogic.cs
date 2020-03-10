@@ -554,5 +554,32 @@ namespace MailChimp.Net.Logic
                 await res.EnsureSuccessMailChimpAsync().ConfigureAwait(false);
             }
         }
+
+        public async Task<IEnumerable<MemberEvent>> GetCustomEventsAsync(string listId, string emailAddressOrHash, QueryableBaseRequest request = null)
+        {
+            using (var client = CreateMailClient($"{BaseUrl}/"))
+            {
+                var response =
+                    await
+                    client.GetAsync(
+                        $"{listId}/members/{Hash(emailAddressOrHash)}/events{request?.ToQueryString()}").ConfigureAwait(false);
+                await response.EnsureSuccessMailChimpAsync().ConfigureAwait(false);
+                var memberEventsResponse = await response.Content.ReadAsAsync<MemberEventsResponse>().ConfigureAwait(false);
+                return memberEventsResponse.Events;
+            }
+        }
+
+        public async Task AddCustomEventsAsync(string listId, string emailAddressOrHash, MemberEventDTO memberEvent, BaseRequest request = null)
+        {
+            using (var client = CreateMailClient($"{BaseUrl}/"))
+            {
+                var res = await client
+                    .PostAsJsonAsync($"{listId}/members/{Hash(emailAddressOrHash)}/events{request?.ToQueryString()}", memberEvent)
+                    .ConfigureAwait(false);
+
+                await res.EnsureSuccessMailChimpAsync().ConfigureAwait(false);
+            }
+        }
+
     }
 }
