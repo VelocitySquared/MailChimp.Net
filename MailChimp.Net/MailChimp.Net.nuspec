@@ -2,9 +2,9 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>MailChimp.Net.V3</id>
-        <version>4.1.0.1-rc</version>
+        <version>4.2.1.1-rc</version>
         <title>MailChimp.Net.V3</title>
-        <authors>Brandon Seydel (DevSquad)</authors>
+        <authors>Velocity Squared, LLC (via Brandon Seydel)</authors>
         <owners>MailChimp.Net.V3</owners>
         <projectUrl>https://github.com/brandonseydel/MailChimp.Net</projectUrl>
         <licenseUrl>https://github.com/brandonseydel/MailChimp.Net/blob/master/LICENSE.txt</licenseUrl>
